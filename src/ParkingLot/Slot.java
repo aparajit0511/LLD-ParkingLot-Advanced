@@ -1,12 +1,13 @@
 package ParkingLot;
 
 public class Slot {
-    private int maxSlots;
     private boolean isOccupied;
     private Vehicle vehicle;
 
-    public Slot(int maxSlots){
-        this.maxSlots = maxSlots;
+    private int slotNumber;
+
+    public Slot(int slotNumber){
+        this.slotNumber = slotNumber;
         this.isOccupied = false;
     }
 
