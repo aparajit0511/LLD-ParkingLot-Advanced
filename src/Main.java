@@ -18,7 +18,17 @@ public class Main {
 //        System.out.println(slot.isAvailable());
 //        System.out.println(slot.getDetails());
         Floors floors = new Floors(4,10);
-        System.out.println(floors.parkVehicle(vehicle));
+        System.out.println("park vehicle status " + floors.parkVehicle(vehicle));
+//        floors.parkVehicle(vehicle);
+        floors.getAvailableSlots();
+
+        Vehicle bus = new Vehicle(VehicleType.BUS,"UP32AH1457","Black");
+        System.out.println("park vehicle status " + floors.parkVehicle(bus));
+        floors.getAvailableSlots();
+
+        Vehicle bus1 = new Vehicle(VehicleType.BUS,"UP16AH2457","Red");
+        System.out.println("park vehicle status " + floors.parkVehicle(bus1));
+        floors.getAvailableSlots();
 //        slot.vacate();
 //        System.out.println(slot.getDetails());
 
