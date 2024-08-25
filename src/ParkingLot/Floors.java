@@ -26,38 +26,54 @@ public class Floors {
         }
     }
 
-    public boolean parkVehicle(Vehicle vehicle){
+    public String parkVehicle(Vehicle vehicle){
 //        System.out.println(slots);
         for(Map.Entry<Integer,List<Slot>> entry : slots.entrySet()){
             List<Slot> value = entry.getValue();
             System.out.println(value);
             System.out.println(value.get(0));
             if (value.get(0).isAvailable() && vehicle.getVehicleType() == VehicleType.BUS){
-                value.get(0).park(vehicle);      // Park the vehicle in the first available slot
+                   // Park the vehicle in the first available slot
 //                value.set(0).park(vehicle);   //  If you need to modify a slot, there's no need to use set() unless you're replacing the Slot object itself.
-                return true;
+                return value.get(0).park(vehicle);
             }
             else if( vehicle.getVehicleType() == VehicleType.MOTORCYCLE ){
                 if((value.get(1).isAvailable() )){
-                    value.get(1).park(vehicle);
+                    return value.get(1).park(vehicle);
                 }
                 else if(value.get(2).isAvailable()){
-                    value.get(2).park(vehicle);
+                   return value.get(2).park(vehicle);
                 }
-                return true;
+
             }
             else{
                 for(int index = 3; index < value.size();index++){
                     if(value.get(index).isAvailable() && vehicle.getVehicleType() == VehicleType.CAR){
-                        value.get(index).park(vehicle);
-                        return true;
+                        return value.get(index).park(vehicle);
+
                     }
                 }
             }
 
         }
-        return false;
+        return "No Spot Avalaible";
     }
+
+    public void leaveVehicle(String ticketNumber) {
+        String ticket_vehicle = ticketNumber.substring(2);
+        for (Map.Entry<Integer, List<Slot>> entry : slots.entrySet()) {
+          List<Slot> value = entry.getValue();
+          for(Slot slot:value){
+              if(!slot.isAvailable() && slot.getDetails().contains(ticket_vehicle)){
+                  slot.vacate();
+                  System.out.println("Vehicle Left");
+              }
+          }
+//            System.out.println(mostSlots.get(0).getDetails());
+        }
+    }
+
+
 
     public void getAvailableSlots(){
 
